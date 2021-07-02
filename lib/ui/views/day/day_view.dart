@@ -19,7 +19,7 @@ class DayView extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: RoundedButton(
-                    onPressed: () => model.selectTime(context),
+                    onPressed: () => model.selectDate(context),
                     label: 'Change Date',
                   ),
                 ),
@@ -30,11 +30,43 @@ class DayView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      model.selectedDate,
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                      model.selectedDateString,
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                     ),
-                    RoundedButton(onPressed: () {}, label: 'Add Meal')
+                    RoundedButton(onPressed: model.addMeal, label: 'Add Meal')
                   ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: model.dailyMeals.isEmpty
+                      ? Center(
+                          child: Text(
+                            'No meals added!',
+                            style: TextStyle(
+                                color: Colors.grey.shade700, fontSize: 20),
+                          ),
+                        )
+                      : ListView.separated(
+                          shrinkWrap: true,
+                          itemBuilder: (BuildContext context, index) =>
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.grey.shade200,
+                                    borderRadius: BorderRadius.circular(10)),
+                                padding: EdgeInsets.all(10),
+                                child: Text(
+                                  model.dailyMeals[index].title!,
+                                  style: TextStyle(fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                          separatorBuilder: (BuildContext context, index) =>
+                              SizedBox(
+                                height: 10,
+                              ),
+                          itemCount: model.dailyMeals.length),
                 )
               ],
             ),
