@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nibble_app/ui/views/day/day_view.dart';
 import 'package:nibble_app/ui/views/meal_list/meal_list_viewmodel.dart';
+import 'package:nibble_app/ui/views/widgets/rounded_button.dart';
 import 'package:stacked/stacked.dart';
 
 class MealListView extends StatelessWidget {
